@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 
 export default function Textform(props) {
+
+  var Style={color: props.mode=='dark'? '#fff':'#263238', backgroundColor: props.mode=='light'? '#fff':'#263238'};
+
   const [text, setText] = useState("");
 
   const handleUpBtn = () => {
@@ -45,9 +48,9 @@ export default function Textform(props) {
   };
   return (
     <>
-      <div className="Container my-3">
+      <div className="Container my-3" style={Style} >
         <div className="d-flex">
-            <h1  className="flex-grow-1">{props.heading}</h1>
+            <h1  className="flex-grow-1" style={{color: props.mode=='light'? 'dark':'light'}} >{props.heading}</h1>
 
             <button className="mx-1 btn btn-primary align-self-end" onClick={clearTextBtn}>
               Clear
@@ -62,6 +65,7 @@ export default function Textform(props) {
           className="form-control my-2"
           placeholder="Enter your Text"
           value={text}
+          style={Style}
           onChange={handleOnChange}
           rows="5"
         ></textarea>
@@ -83,18 +87,19 @@ export default function Textform(props) {
         </button>
       </div>
 
-      <div className="Container my-3">
+      <div className="Container my-3" style={Style}>
         <h2>Preview</h2>
         <textarea
           className="border-3 form-control"
           value={text}
           id="CopyText"
+          style={Style}
           placeholder="Enter TEXT Above to Preview Here"
           readOnly={true}
           rows="5"
         ></textarea>
       </div>
-      <div className="Container my-5">
+      <div className="Container my-5" style={Style}>
         <h1>Your Text Summary</h1>
         <p>
           {text.split(" ").length - 1} words and{" "}
