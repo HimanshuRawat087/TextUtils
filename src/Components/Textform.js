@@ -50,7 +50,7 @@ export default function Textform(props) {
     <>
       <div className="Container my-3" style={Style} >
         <div className="d-flex">
-            <h1  className="flex-grow-1" style={{color: props.mode=='light'? 'dark':'light'}} >{props.heading}</h1>
+            <h1  className="flex-grow-1" >{props.heading}</h1>
 
             <button className="mx-1 btn btn-primary align-self-end" onClick={clearTextBtn}>
               Clear
@@ -90,7 +90,7 @@ export default function Textform(props) {
       <div className="Container my-3" style={Style}>
         <h2>Preview</h2>
         <textarea
-          className="border-3 form-control"
+          className={`border-3 form-control bg-${props.mode}`}
           value={text}
           id="CopyText"
           style={Style}
