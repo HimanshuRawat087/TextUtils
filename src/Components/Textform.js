@@ -3,17 +3,17 @@ import React, { useState } from "react";
 export default function Textform(props) {
   const [text, setText] = useState("");
 
-  const handleUpClick = () => {
+  const handleUpBtn = () => {
     let newtext = text.toUpperCase();
     setText(newtext);
   };
 
-  const handleLoClick = () => {
+  const handleLoBtn = () => {
     let newtext = text.toLowerCase();
     setText(newtext);
   };
 
-  const handleTitleClick = () => {
+  const handleTitleBtn = () => {
     let newtext = text
       .split(" ")
       .map(function (word, index) {
@@ -23,9 +23,16 @@ export default function Textform(props) {
     setText(newtext);
   };
 
-  const clearTextClick = () => {
+  const clearTextBtn = () => {
     let newtext = " ";
     setText(newtext);
+  };
+
+  const copyTextBtn = () => {
+    var newtext = document.getElementById("CopyText");
+    newtext.select();
+    newtext.setSelectionRange(0,9999);
+    navigator.clipboard.writeText(newtext.value)
   };
 
   const handleOnChange = (event) => {
@@ -33,33 +40,38 @@ export default function Textform(props) {
   };
   return (
     <>
-      <div className="Container">
-        <h1>{props.heading}</h1>
-
-        <div className="mb-3">
-          <textarea
-            className="form-control"
-            placeholder=" Enter your Text"
-            value={text}
-            onChange={handleOnChange}
-            rows="15"
-          ></textarea>
+     <h1>{props.heading}</h1>
+      <div className="d-flex flex-row-reverse mb-2">
+        <div className="p-1">
+          <button className="btn btn-primary" onClick={clearTextBtn}>
+            Clear
+          </button>
         </div>
-
-        <button className="btn btn-primary mx-2" onClick={handleUpClick}>
+        <div className="p-1">
+          <button className="btn btn-primary" onClick={copyTextBtn}>
+            Copy
+          </button>
+        </div>
+      </div>
+      <div className="Container">
+        <textarea
+          className="form-control"
+          id="CopyText"
+          placeholder="Enter your Text"
+          value={text}
+          onChange={handleOnChange}
+          rows="15"
+        ></textarea>
+        <button className="btn btn-primary mx-1" onClick={handleUpBtn}>
           Convert to Uppercase
         </button>
 
-        <button className="btn btn-primary mx-2" onClick={handleLoClick}>
+        <button className="btn btn-primary mx-1" onClick={handleLoBtn}>
           Convert to Lowercase
         </button>
 
-        <button className="btn btn-primary mx-2" onClick={handleTitleClick}>
+        <button className="btn btn-primary mx-1" onClick={handleTitleBtn}>
           Convert to Title Case
-        </button>
-
-        <button className="btn btn-primary mx-2" onClick={clearTextClick}>
-          Clear
         </button>
       </div>
 

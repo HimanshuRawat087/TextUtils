@@ -26,12 +26,12 @@ export default function ChangeMode() {
 
   return (
     <div style={style1}>
-      <div class="mb-3" style={style1}>
-        <label for="exampleFormControlTextarea1" class="form-label">
+      <div className="mb-3" style={style1}>
+        <label htmlFor="exampleFormControlTextarea1" className="form-label">
           Example textarea
         </label>
         <textarea
-          class="form-control"
+          className="form-control"
           id="exampleFormControlTextarea1"
           style={style1}
           rows="3"
