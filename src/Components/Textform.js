@@ -31,8 +31,13 @@ export default function Textform(props) {
   const copyTextBtn = () => {
     var newtext = document.getElementById("CopyText");
     newtext.select();
-    newtext.setSelectionRange(0,9999);
-    navigator.clipboard.writeText(newtext.value)
+    newtext.setSelectionRange(0, 9999);
+    navigator.clipboard.writeText(newtext.value);
+  };
+
+  const handleExtraSpaces = () => {
+    let newtext = text.split(/[ ]+/);
+    setText(newtext.join(" "))
   };
 
   const handleOnChange = (event) => {
@@ -40,28 +45,27 @@ export default function Textform(props) {
   };
   return (
     <>
-     <h1>{props.heading}</h1>
-      <div className="d-flex flex-row-reverse mb-2">
-        <div className="p-1">
-          <button className="btn btn-primary" onClick={clearTextBtn}>
-            Clear
-          </button>
+      <div className="Container my-3">
+        <div className="d-flex">
+            <h1  className="flex-grow-1">{props.heading}</h1>
+
+            <button className="mx-1 btn btn-primary align-self-end" onClick={clearTextBtn}>
+              Clear
+            </button>
+
+            <button className="mx-1 btn btn-primary align-self-end " onClick={copyTextBtn}>
+              Copy
+            </button>
         </div>
-        <div className="p-1">
-          <button className="btn btn-primary" onClick={copyTextBtn}>
-            Copy
-          </button>
-        </div>
-      </div>
-      <div className="Container">
+
         <textarea
-          className="form-control"
-          id="CopyText"
+          className="form-control my-2"
           placeholder="Enter your Text"
           value={text}
           onChange={handleOnChange}
-          rows="15"
+          rows="5"
         ></textarea>
+
         <button className="btn btn-primary mx-1" onClick={handleUpBtn}>
           Convert to Uppercase
         </button>
@@ -73,8 +77,23 @@ export default function Textform(props) {
         <button className="btn btn-primary mx-1" onClick={handleTitleBtn}>
           Convert to Title Case
         </button>
+
+        <button className="btn btn-primary mx-1" onClick={handleExtraSpaces}>
+          Remove Extra Spaces
+        </button>
       </div>
 
+      <div className="Container my-3">
+        <h2>Preview</h2>
+        <textarea
+          className="border-3 form-control"
+          value={text}
+          id="CopyText"
+          placeholder="Enter TEXT Above to Preview Here"
+          readOnly={true}
+          rows="5"
+        ></textarea>
+      </div>
       <div className="Container my-5">
         <h1>Your Text Summary</h1>
         <p>
@@ -82,9 +101,6 @@ export default function Textform(props) {
           {text.length - (text.split(" ").length - 1)} characters
         </p>
         <p>{0.008 * (text.split(" ").length - 1)} minuets to read</p>
-
-        <h2>Preview</h2>
-        <p className="border-3">{text}</p>
       </div>
     </>
   );
