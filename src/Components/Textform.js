@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 export default function Textform(props) {
   var Style = {
-    color: props.mode == "dark" ? "#fff" : "black",
-    backgroundColor: props.mode == "light" ? "#fff" : "#0d283d",
+    color: props.mode === "dark" ? "#fff" : "black",
+    backgroundColor: props.mode === "light" ? "#fff" : "#0d283d",
   };
 
   const [text, setText] = useState("");
@@ -11,11 +11,13 @@ export default function Textform(props) {
   const handleUpBtn = () => {
     let newtext = text.toUpperCase();
     setText(newtext);
+    newtext== 0 && " " ? props.showAlert('Enter Text to convert', 'warning') : props.showAlert('Converted to uppercase', 'success')
   };
 
   const handleLoBtn = () => {
     let newtext = text.toLowerCase();
     setText(newtext);
+    newtext== 0 && " " ? props.showAlert('Enter Text to convert', 'warning') : props.showAlert('Converted to lowercase', 'success')
   };
 
   const handleTitleBtn = () => {
@@ -26,11 +28,13 @@ export default function Textform(props) {
       })
       .join(" ");
     setText(newtext);
+    newtext== 0 && " " ? props.showAlert('Enter Text to convert', 'warning') : props.showAlert('Converted to tilecase', 'success')
   };
 
   const clearTextBtn = () => {
     let newtext = " ";
     setText(newtext);
+    newtext== 0 && " " ? props.showAlert('Enter Text to clear', 'warning') : props.showAlert('Text cleared', 'success')
   };
 
   const copyTextBtn = () => {
@@ -38,11 +42,13 @@ export default function Textform(props) {
     newtext.select();
     newtext.setSelectionRange(0, 9999);
     navigator.clipboard.writeText(newtext.value);
+    props.showAlert('Copied to clipboard', 'success')
   };
 
   const handleExtraSpaces = () => {
     let newtext = text.split(/[ ]+/);
     setText(newtext.join(" "));
+    props.showAlert('Extra spaces removed', 'success')
   };
 
   const handleOnChange = (event) => {

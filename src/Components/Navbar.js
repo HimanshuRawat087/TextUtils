@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 export default function Navbar(props) {
@@ -32,9 +32,6 @@ export default function Navbar(props) {
                 About
               </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link disabled">Disabled</a>
-            </li>
           </ul>
           {/* <form className="d-flex" role="search">
               <input
@@ -47,7 +44,7 @@ export default function Navbar(props) {
                 Search
               </button>
             </form> */}
-          <div className={`form-check form-switch text-${props.mode=='dark'?'light':'dark'}`}>
+          <div className={`form-check form-switch text-${props.mode==='dark'?'light':'dark'}`}>
             <input
               className="form-check-input"
               type="checkbox"

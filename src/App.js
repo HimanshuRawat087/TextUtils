@@ -1,9 +1,9 @@
-import logo from "./logo.svg";
+// import ChangeMode from "./Components/ChangeMode";
+// import logo from "./logo.svg";
 import "./App.css";
 import React, { useState } from "react";
 import Navbar from "./Components/Navbar";
 import Textform from "./Components/Textform";
-import ChangeMode from "./Components/ChangeMode";
 import Alert from "./Components/Alert";
 
 function App() {
@@ -18,6 +18,9 @@ function App() {
       msg: message,
       type: type,
     })
+    setTimeout(() => {
+      setAlert(null)
+    }, 2000);
   };
 
   const toggleMode = () => {
@@ -25,12 +28,12 @@ function App() {
       setMode("dark");
       document.body.style.background = "#0d283d";
       setText("Light Mode");
-      showAlert("dark mode is enabled", "success");
+      showAlert("Dark mode is enabled", "success");
     } else {
       setMode("light");
       document.body.style.background = "white";
       setText("Dark Mode");
-      showAlert("light mode is enabled", "success");
+      showAlert("Light mode is enabled", "success");
     }
   };
 
@@ -48,6 +51,7 @@ function App() {
           heading="Enter Your Text Below"
           mode={mode}
           toggleMode={toggleMode}
+          showAlert={showAlert}
         />
       </div>
     </>
