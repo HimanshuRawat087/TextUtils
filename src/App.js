@@ -13,7 +13,7 @@ function App() {
   const toggleMode = () =>{
     if(mode ==='light'){
       setMode('dark')
-      document.body.style.background='#263238'
+      document.body.style.background='#0d283d'
       setText('Light Mode')
     }
     else{
@@ -29,12 +29,10 @@ function App() {
       <div className="container">
         <Textform
           heading="Enter Your Text Below"
-          buttonType="Convert to Uppercase"
           mode={mode}
           toggleMode={toggleMode}
         />
       </div>
-      <ChangeMode />
     </>
   );
 }

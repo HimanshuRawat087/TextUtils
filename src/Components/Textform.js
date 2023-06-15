@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 
 export default function Textform(props) {
-
-  var Style={color: props.mode=='dark'? '#fff':'#263238', backgroundColor: props.mode=='light'? '#fff':'#263238'};
+  var Style = {
+    color: props.mode == "dark" ? "#fff" : "black",
+    backgroundColor: props.mode == "light" ? "#fff" : "#0d283d",
+  };
 
   const [text, setText] = useState("");
 
@@ -40,7 +42,7 @@ export default function Textform(props) {
 
   const handleExtraSpaces = () => {
     let newtext = text.split(/[ ]+/);
-    setText(newtext.join(" "))
+    setText(newtext.join(" "));
   };
 
   const handleOnChange = (event) => {
@@ -48,22 +50,11 @@ export default function Textform(props) {
   };
   return (
     <>
-      <div className="Container my-3" style={Style} >
-        <div className="d-flex">
-            <h1  className="flex-grow-1" >{props.heading}</h1>
-
-            <button className="mx-1 btn btn-primary align-self-end" onClick={clearTextBtn}>
-              Clear
-            </button>
-
-            <button className="mx-1 btn btn-primary align-self-end " onClick={copyTextBtn}>
-              Copy
-            </button>
-        </div>
+      <div className="Container my-3" style={Style}>
+        <h1 className="flex-grow-1">{props.heading}</h1>
 
         <textarea
           className="form-control my-2"
-          placeholder="Enter your Text"
           value={text}
           style={Style}
           onChange={handleOnChange}
@@ -87,14 +78,31 @@ export default function Textform(props) {
         </button>
       </div>
 
-      <div className="Container my-3" style={Style}>
-        <h2>Preview</h2>
+      <div className="Container" style={Style}>
+        <div className="d-flex">
+          <h2 className="flex-grow-1">Preview</h2>
+          <button
+            className="mx-1 btn btn-primary align-self-end my-2"
+            onClick={copyTextBtn}
+          >
+            Copy
+          </button>
+          <button
+            className="mx-1 btn btn-primary align-self-end my-2"
+            onClick={clearTextBtn}
+          >
+            Clear
+          </button>
+        </div>
         <textarea
-          className={`border-3 form-control bg-${props.mode}`}
-          value={text}
+          className={"border-1 form-control"}
           id="CopyText"
+          value={
+            text.length > 0
+              ? text
+              : "Enter something in the 'Text Box' above to preview Here"
+          }
           style={Style}
-          placeholder="Enter TEXT Above to Preview Here"
           readOnly={true}
           rows="5"
         ></textarea>
