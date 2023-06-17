@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import Navbar from "./Components/Navbar";
 import Textform from "./Components/Textform";
 import Alert from "./Components/Alert";
+import About from "./Components/About";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
-
-  
   const [mode, setMode] = useState("light");
   const [BtnText, setText] = useState("Dark Mode");
   const [alert, setAlert] = useState(null);
@@ -16,9 +16,9 @@ function App() {
     setAlert({
       msg: message,
       type: type,
-    })
+    });
     setTimeout(() => {
-      setAlert(null)
+      setAlert(null);
     }, 2000);
   };
 
@@ -38,21 +38,21 @@ function App() {
 
   return (
     <>
-      <Navbar
-        title="TextUtils"
-        btnText={BtnText}
-        mode={mode}
-        toggleMode={toggleMode}
-      />
-      <Alert alert={alert}/>
-      <div className="container">
-        <Textform
-          heading="Enter Your Text Below"
+      <Router>
+        <Navbar
+          title="TextUtils"
+          btnText={BtnText}
           mode={mode}
           toggleMode={toggleMode}
-          showAlert={showAlert}
         />
-      </div>
+        <Alert alert={alert} />
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<Textform heading="Enter Your Text Below" mode={mode} toggleMode={toggleMode} showAlert={showAlert}/>}/>
+              <Route path="/about" element={<About />} />
+          </Routes>
+        </div>
+      </Router>
     </>
   );
 }
