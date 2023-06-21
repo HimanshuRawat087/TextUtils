@@ -38,10 +38,7 @@ export default function Textform(props) {
   };
 
   const copyTextBtn = () => {
-    var newtext = document.getElementById("CopyText");
-    newtext.select();
-    newtext.setSelectionRange(0, 9999);
-    navigator.clipboard.writeText(newtext.value);
+    navigator.clipboard.writeText(text);
     props.showAlert('Copied to clipboard', 'success')
   };
 
