@@ -108,7 +108,7 @@ export default function Textform(props) {
           value={
             text.length > 0
               ? text
-              : "Enter something in the 'Text Box' above to preview Here"
+              : "Nothing to preview!!"
           }
           style={Style}
           readOnly={true}
@@ -118,10 +118,10 @@ export default function Textform(props) {
       <div className="Container my-5" style={Style}>
         <h1>Your Text Summary</h1>
         <p>
-          {text.split(" ").filter((element)=>{return element.length!==0}).length} words and
+          {text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words and
           {text.length} characters
         </p>
-        <p>{0.008 * (text.split(" ").length - 1)} minuets to read</p>
+        <p>{0.008 * text.split(/\s+/).filter((element)=>{return element.length!==0}).length} minuets to read</p>
       </div>
     </>
   );
